@@ -47,7 +47,7 @@ export const fetchAllJournals = async () => {
 };
 export const fetchJournalById =  async(id) => {
   const authHeader = getCredentials();
-  const response = axiosInstance.get(`/journal/id/${id}`, id, {
+  const response = axiosInstance.get(`/journal/id/${id}`,{
     headers: {
       Authorization: authHeader,
     },
@@ -65,7 +65,7 @@ export const createJournalEntry = async(journal) => {
 
 export const deleteJournalById = async(id) => {
   const authHeader = getCredentials();
-  axiosInstance.delete(`/journal/id/${id}`, id, {
+  axiosInstance.delete(`/journal/id/${id}`, {
     headers: {
       Authorization: authHeader,
     },

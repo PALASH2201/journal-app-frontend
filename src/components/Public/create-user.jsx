@@ -19,8 +19,7 @@ const CreateUser = () => {
       password: password,
     };
     try {
-     // const response = await createUser(User);
-      console.log(User);
+      await createUser(User);
       setMessage("User created successfully");
       navigate('/login');
     } catch (error) {

@@ -16,11 +16,11 @@ const GetJournals = () => {
     };
 
     getAllJournals();
-  }, []);
+  },journalEntryList);
 
   return (
     <>
-      {journalEntryList && <h1>Your Journals</h1>}
+      {journalEntryList && <h1>My Journals</h1>}
       {journalEntryList &&
         journalEntryList.map((journal) => (
           <Journal key={journal.date} journal={journal} />
