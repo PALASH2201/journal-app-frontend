@@ -1,0 +1,22 @@
+
+.entry{
+    margin: 10px;
+}
+.button-container{
+    display: flex;
+    justify-content: end;
+} 
+
+.edit-btn{
+    margin-right: 10px;
+}
+.edit-btn:hover{
+    cursor: pointer;
+}
+
+.delete-btn{
+    margin-left: 10px;
+} 
+.delete-btn:hover{
+    cursor: pointer;
+} 
