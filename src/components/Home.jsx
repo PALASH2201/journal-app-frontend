@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { clearCredentials } from "../api-config/api";
 
 const styles = {
@@ -10,22 +10,21 @@ const styles = {
     flexDirection: "column",
   },
   header: {
-    backgroundColor: "var(--primary)",
-    color: "var(--primary-foreground)",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: "1rem 1.5rem",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
   headerContainer: {
     display: "flex",
-    maxWidth: "1024px",
     justifyContent: "space-between",
   },
   footerContainer: {
-    maxWidth: "1024px",
     display: "flex",
     justifyContent: "space-between",
   },
   container: {
+    margin:"0 auto",
     maxWidth: "1024px",
   },
   nav: {
@@ -48,15 +47,15 @@ const styles = {
     gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
   },
   card: {
-    backgroundColor: "var(--card)",
+    backgroundColor: "#ffffff",
     padding: "1.5rem",
     borderRadius: "8px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     transition: "background-color 0.3s ease",
   },
   footer: {
-    backgroundColor: "var(--muted)",
-    color: "var(--muted-foreground)",
+    backgroundColor: "#000000",
+    color: "#ffffff",
     padding: "1rem 1.5rem",
     fontSize: "0.875rem",
     boxShadow: "0 -2px 4px rgba(0, 0, 0, 0.1)",
@@ -64,10 +63,8 @@ const styles = {
 };
 
 export default function Home() {
-  const navigate = useNavigate();
   const handleLogout = () => {
     clearCredentials();
-    navigate("/login");
   };
   return (
     <div style={styles.flexContainer}>
@@ -77,7 +74,7 @@ export default function Home() {
             to="#"
             style={{ fontSize: "1.5rem", fontWeight: "bold", color: "inherit" }}
           >
-            Journal App
+            Journalize
           </Link>
           <nav style={styles.nav}>
             <Link
@@ -95,13 +92,14 @@ export default function Home() {
             >
               Journals
             </Link>
-            <p
+            <a
+              href="/login"
               className="logoutButton"
               style={styles.logoutButton}
               onClick={handleLogout}
             >
               Logout
-            </p>
+            </a>
           </nav>
         </div>
       </header>

@@ -1,7 +1,7 @@
 :root {
     --background: #ffffff;
-    --foreground: #141e4b;
-    --primary: #141e4b;
+    --foreground: #000000;
+    --primary: #000000;
     --primary-foreground: #f4f4f4;
     --secondary: #4a5f71;
     --secondary-foreground: #0c0e19;
@@ -11,12 +11,12 @@
     --destructive-foreground: #0c0e19;
     --muted: #20465f;
     --muted-foreground: #0c0e19;
-    --card: #d0ecff;
+    --card: #ffffff;
     --card-foreground: #0c0e19;
     --popover: #ffffff;
     --popover-foreground: #0e1223;
     --border: #5e78a0;
-    --input: #d0ecff;
+    --input: #edf3f8;
     --ring: #39528e;
     --radius: 1rem;
   }
@@ -43,9 +43,8 @@
     max-width: 672px;
     padding: 1.5rem;
     background-color: var(--card);
-    border: 1px solid #141e4b;
     border-radius: var(--radius);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     margin: 20px;
   }
   
@@ -113,5 +112,5 @@
   }
   
   .button:hover {
-    background-color: hsl(229, 58%, 29%);
+    background-color: hsl(0, 0%, 14%);
   }
