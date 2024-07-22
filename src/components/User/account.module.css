@@ -1,0 +1,71 @@
+
+.accountSettings {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border: 1px solid rgb(221, 220, 220);
+  }
+  
+  .accountSettings h1 {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .accountSettings section {
+    margin-bottom: 20px;
+  }
+  
+  .accountSettings h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  } 
+
+  .wrongInput{
+     border:5px solid red;
+     border-radius:5px;
+  }
+  .correctInput{
+     border:5px solid rgb(32, 208, 23);
+     border-radius:5px;
+  }
+  
+  .saveChanges,
+  .changePasswordBtn,
+  .deleteAccountBtn {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .deleteAccountBtn {
+    background-color: #d9534f;
+  }
+  
+  .deleteAccount p {
+    color: #666;
+  }
+  

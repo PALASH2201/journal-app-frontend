@@ -10,6 +10,7 @@ import GetJournals from "./components/Journal/get-journals";
 import CreateJournal from "./components/Journal/create-journal";
 import Home from "./components/Home";
 import Login from "./components/Public/Login";
+import AccountSettings from "./components/User/Account";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/create-user" element={<CreateUser />} />
         <Route path="/journals" element={<GetJournals />} />
         <Route path="/create-journal" element={<CreateJournal />} />
+        <Route path="/account" element={<AccountSettings />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </Router>

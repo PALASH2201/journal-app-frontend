@@ -86,7 +86,7 @@ export default function Home() {
             >
               New Journal
             </Link>
-            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link to="/account" style={{ textDecoration: "none", color: "inherit" }}>
               Profile
             </Link>
             <Link
@@ -144,7 +144,7 @@ export default function Home() {
                 </p>
               </div>
             </Link>
-            <Link to="#" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link to="/account" style={{ textDecoration: "none", color: "inherit" }}>
               <div style={styles.card}>
                 <div
                   style={{

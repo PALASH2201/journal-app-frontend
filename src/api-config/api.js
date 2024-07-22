@@ -80,3 +80,22 @@ export const updateJournalById = async(id, journal) => {
     },
   });
 };
+
+//User Endpoints
+export const updatePassword = async(User) =>{
+  const authHeader = getCredentials();
+  axiosInstance.put(`/user`,User,{
+    headers:{
+      Authorization: authHeader,
+    },
+  });
+}; 
+
+export const deleteUser = async() =>{
+  const authHeader = getCredentials();
+  axiosInstance.delete(`/user`,{
+    headers:{
+      Authorization: authHeader,
+    },
+  });
+};
