@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchAllJournals } from "../../api-config/api";
 import Journal from "./journal-entry";
 
+
 const GetJournals = () => {
   const [journalEntryList, setJournalEntryList] = useState([]);
 

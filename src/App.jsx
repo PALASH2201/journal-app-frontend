@@ -1,31 +1,20 @@
-import HealthCheck from "./components/Public/health-check";
-import CreateUser from "./components/Public/create-user";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import GetJournals from "./components/Journal/get-journals";
-import CreateJournal from "./components/Journal/create-journal";
-import Home from "./components/Home";
-import Login from "./components/Public/Login";
-import AccountSettings from "./components/User/Account";
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
+  const location = useLocation();
+  const hideComponents =
+    location.pathname === "/login" || location.pathname === "/create-user";
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/health-check" element={<HealthCheck />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/create-user" element={<CreateUser />} />
-        <Route path="/journals" element={<GetJournals />} />
-        <Route path="/create-journal" element={<CreateJournal />} />
-        <Route path="/account" element={<AccountSettings />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      </Routes>
-    </Router>
+    <div className="appContainer">
+      {!hideComponents && <Header />}
+      <div className="mainContent">
+        <Outlet />
+      </div>
+      {!hideComponents && <Footer />}
+    </div>
   );
 }
 

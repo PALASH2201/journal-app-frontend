@@ -27,10 +27,7 @@
     align-items: center;
   }
   
-  * {
-    box-sizing: border-box;
-    font-family: "Mukta", sans-serif;
-  }
+  
   
   body {
     background-color: var(--background);
@@ -40,6 +37,7 @@
   
   .cardContainer {
     width: 60%;
+    min-width: 280px;
     max-width: 672px;
     padding: 1.5rem;
     background-color: var(--card);

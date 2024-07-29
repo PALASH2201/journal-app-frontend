@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import styles from "./Login.module.css";
-import { authenticateUser, setCredentials } from "../../api-config/api";
+import { login, setCredentials } from "../../api-config/api";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const usernameEle = useRef();
   const passwordEle = useRef();
-  const [message , setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -18,12 +17,12 @@ function Login() {
       password: password,
     };
     try {
-      const response = await authenticateUser(User);
-      setMessage("Login successful");
-      setCredentials(userName,password);
+      const response = await login(User);
+    //  console.log(response.data);
+      setCredentials(response.data);
       navigate('/home');
     } catch (error) {
-      setMessage(error.response.data);
+      console.log(error);
     }
     usernameEle.current.value = "";
     passwordEle.current.value = "";
@@ -65,7 +64,6 @@ function Login() {
         <p className={styles.signupPrompt}>
           Don't have an account? <a href="/create-user">Create account</a>
         </p>
-        {message}
       </div>
     </div>
   );

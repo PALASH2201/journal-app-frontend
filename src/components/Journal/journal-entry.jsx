@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import DeleteModal, { EditModal } from "../Modal";
 import { deleteJournalById, updateJournalById } from "../../api-config/api";
-import{ useNavigate , redirect} from 'react-router-dom'
+import{ useNavigate} from 'react-router-dom'
+import styles from './get-journals.module.css'
 
 const Journal = ({ journal }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -34,15 +35,15 @@ const Journal = ({ journal }) => {
   }
 
   return (
-    <div className="card post-card entry" style={{ width: "30rem" }}>
-      <div className="card-body">
-        <h5 className="card-title">{journal.title}</h5>
-        <p className="card-text">Created on {handleDate(journal.date)}</p>
+    <div className={styles.cardContainer}>
+      <div className={styles.cardBody}>
+        <h5 className={styles.cardTitle}>{journal.title}</h5>
+        <p className={styles.date}>Created on {handleDate(journal.date)}</p>
         <br/>
         <p className="card-text">{journal.content}</p>
-        <div className="button-container">
+        <div className={styles.buttonContainer}>
           <div
-            className="edit-btn"
+            className={styles.editBtn}
             onClick={() => {
               setSelectedJournalId(journal.id);
               setIsEditModalOpen(true);
@@ -51,7 +52,7 @@ const Journal = ({ journal }) => {
             <MdEdit />
           </div>
           <div
-            className="delete-btn"
+            className={styles.deleteBtn}
             onClick={() => {
               setSelectedJournalId(journal.id);
               setIsDeleteModalOpen(true);

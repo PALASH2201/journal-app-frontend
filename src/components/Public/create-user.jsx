@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { createUser } from "../../api-config/api";
+import { signup } from "../../api-config/api";
 import styles from './create-user.module.css'
 import {useNavigate} from 'react-router-dom'
 
@@ -19,7 +19,7 @@ const CreateUser = () => {
       password: password,
     };
     try {
-      await createUser(User);
+      await signup(User);
       setMessage("User created successfully");
       navigate('/login');
     } catch (error) {

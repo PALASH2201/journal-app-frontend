@@ -1,22 +1,19 @@
+*{
+    box-sizing: border-box;
+    font-family: "Manrope", sans-serif;
+}
+
 
 .entry{
     margin: 10px;
-}
-.button-container{
+} 
+
+.appContainer{
     display: flex;
-    justify-content: end;
-} 
-
-.edit-btn{
-    margin-right: 10px;
-}
-.edit-btn:hover{
-    cursor: pointer;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.delete-btn{
-    margin-left: 10px;
-} 
-.delete-btn:hover{
-    cursor: pointer;
-} 
+.mainContent{
+    flex:1;
+}

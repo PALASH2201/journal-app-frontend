@@ -2,23 +2,20 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:8080";
 
-export function setCredentials(userName, password) {
-  localStorage.setItem("userName", userName);
-  localStorage.setItem("password", password);
+export function setCredentials(token) {
+  localStorage.setItem("token",token);
 }
 
 const getCredentials = () => {
-  const userName = localStorage.getItem("userName");
-  const password = localStorage.getItem("password");
-  if (userName && password) {
-    return `Basic ${btoa(`${userName}:${password}`)}`;
+  const token = localStorage.getItem("token");
+  if (token) {
+    return `Bearer ${token}`;
   }
   return "";
 };
 
 export function clearCredentials() {
-  localStorage.removeItem("userName");
-  localStorage.removeItem("password");
+  localStorage.removeItem("token");
 }
 
 const axiosInstance = axios.create({
@@ -30,9 +27,9 @@ const axiosInstance = axios.create({
 
 //Public endpoints
 export const healthCheck = () => axiosInstance.get("/public/health-check");
-export const createUser = (user) =>
-  axiosInstance.post("/public/create-user", user);
-export const authenticateUser = (user) =>
+export const signup = (user) =>
+  axiosInstance.post("/public/signup", user);
+export const login = (user) =>
   axiosInstance.post("/public/login", user);
 
 //Journal endpoints
