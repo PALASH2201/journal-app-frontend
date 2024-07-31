@@ -1,12 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styles from "./Login.module.css";
 import { login, setCredentials } from "../../api-config/api";
 import { useNavigate } from "react-router-dom";
+import { JournalAppContext } from "../../store/journal-app-store";
 
 function Login() {
   const usernameEle = useRef();
   const passwordEle = useRef();
   const navigate = useNavigate();
+  const {handleLogin} = useContext(JournalAppContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,8 +20,8 @@ function Login() {
     };
     try {
       const response = await login(User);
-    //  console.log(response.data);
       setCredentials(response.data);
+      handleLogin();
       navigate('/home');
     } catch (error) {
       console.log(error);

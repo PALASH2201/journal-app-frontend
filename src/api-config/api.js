@@ -6,6 +6,11 @@ export function setCredentials(token) {
   localStorage.setItem("token",token);
 }
 
+export function checkAuth(){
+  const token = localStorage.getItem('token');
+  return !!token ;// Returns true if token exists, false otherwise
+}
+
 const getCredentials = () => {
   const token = localStorage.getItem("token");
   if (token) {

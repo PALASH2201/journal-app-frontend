@@ -1,12 +1,14 @@
 import { createJournalEntry } from "../../api-config/api";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styles from "./create-journal.module.css";
 import { useNavigate } from "react-router-dom";
+import { JournalAppContext } from "../../store/journal-app-store";
 
 const CreateJournal = () => {
   const titleEle = useRef();
   const contentEle = useRef();
-  const [message, setMessage] = useState();
+  const {refreshJournals} = useContext(JournalAppContext);
+  const [journalMessage, setjournalMessage] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -19,11 +21,12 @@ const CreateJournal = () => {
     };
     try {
       await createJournalEntry(journal);
-      setMessage("Journal created successfully");
+      setjournalMessage("Journal created successfully");
+      refreshJournals();
       navigate('/journals');
     } catch (error) {
       console.error("Error creating Journal:", error);
-      setMessage("Error creating Journal");
+      setjournalMessage("Error creating Journal");
     }
     titleEle.current.value = "";
     contentEle.current.value = "";
@@ -66,7 +69,7 @@ const CreateJournal = () => {
           </div>
         </div>
       </form>
-      {message && <p>{message}</p>}
+      {journalMessage && <p>{journalMessage}</p>}
     </>
   );
 };

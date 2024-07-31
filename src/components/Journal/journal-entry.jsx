@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import DeleteModal, { EditModal } from "../Modal";
 import { deleteJournalById, updateJournalById } from "../../api-config/api";
-import{ useNavigate} from 'react-router-dom'
-import styles from './get-journals.module.css'
+import { useNavigate } from "react-router-dom";
+import styles from "./journal-entry.module.css";
+import { JournalAppContext } from "../../store/journal-app-store";
 
 const Journal = ({ journal }) => {
+  const { refreshJournals } = useContext(JournalAppContext);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedJournalId, setSelectedJournalId] = useState("");
@@ -22,15 +24,27 @@ const Journal = ({ journal }) => {
   };
 
   const handleDelete = async () => {
-    await deleteJournalById(selectedJournalId);
-    closeDeleteModal();
+    try {
+      await deleteJournalById(selectedJournalId);
+      refreshJournals();
+    } catch (e) {
+      alert("Could not delete. Try again!");
+    } finally {
+      closeDeleteModal();
+    }
   };
   const handleEdit = async (journal) => {
-    await updateJournalById(selectedJournalId,journal);
-    closeEditModal();
+    try {
+      await updateJournalById(selectedJournalId, journal);
+      refreshJournals();
+    } catch (e) {
+      alert("Could not edit. Try again!");
+    } finally {
+      closeEditModal();
+    }
   };
-  function handleDate(date){
-    let [newDate,time] = date.split('T');
+  function handleDate(date) {
+    let [newDate, time] = date.split("T");
     return newDate;
   }
 
@@ -39,7 +53,7 @@ const Journal = ({ journal }) => {
       <div className={styles.cardBody}>
         <h5 className={styles.cardTitle}>{journal.title}</h5>
         <p className={styles.date}>Created on {handleDate(journal.date)}</p>
-        <br/>
+        <br />
         <p className="card-text">{journal.content}</p>
         <div className={styles.buttonContainer}>
           <div

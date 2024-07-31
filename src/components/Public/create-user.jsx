@@ -7,7 +7,6 @@ const CreateUser = () => {
   const usernameEle = useRef();
   const passwordEle = useRef();
   const navigate = useNavigate();
-  const [message, setMessage] = useState();
   
 
   const handleSubmit = async (event) => {
@@ -20,11 +19,9 @@ const CreateUser = () => {
     };
     try {
       await signup(User);
-      setMessage("User created successfully");
       navigate('/login');
     } catch (error) {
       console.error("Error creating user:", error);
-      setMessage("Could not create account");
     }
     usernameEle.current.value = "";
     passwordEle.current.value = "";
@@ -65,7 +62,6 @@ const CreateUser = () => {
           <button type="submit" className={styles.button}>
             Create Account
           </button>
-          {message}
         </form> 
       </div>
     </div>

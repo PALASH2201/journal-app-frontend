@@ -1,27 +1,15 @@
-import { useState, useEffect } from "react";
-import { fetchAllJournals } from "../../api-config/api";
+import {useContext } from "react";
 import Journal from "./journal-entry";
-
+import { JournalAppContext } from "../../store/journal-app-store";
+import LoadingSpinner from '../LoadingSpinner'
 
 const GetJournals = () => {
-  const [journalEntryList, setJournalEntryList] = useState([]);
-
-  useEffect(() => {
-    const getAllJournals = async () => {
-      try {
-        const response = await fetchAllJournals();
-        setJournalEntryList(response.data);
-      } catch (error) {
-        console.error("Error!!!", error);
-      }
-    };
-
-    getAllJournals();
-  },journalEntryList);
-
+  const {journalEntryList}=useContext(JournalAppContext)
+  const {fetching} = useContext(JournalAppContext);
   return (
     <>
-      {journalEntryList && <h1>My Journals</h1>}
+      {journalEntryList && <h1 style={{textAlign:"center",margin:"5px 0px"}}>My Journals</h1>}
+      {fetching && <LoadingSpinner/>}
       {journalEntryList &&
         journalEntryList.map((journal) => (
           <Journal key={journal.date} journal={journal} />
