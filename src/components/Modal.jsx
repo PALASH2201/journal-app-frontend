@@ -1,4 +1,6 @@
-import { useRef} from "react";
+import { useRef, useState } from "react";
+import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 
 const DeleteModal = ({ onClose, onDelete }) => {
   return (
@@ -45,18 +47,28 @@ const DeleteModal = ({ onClose, onDelete }) => {
   );
 };
 
-export const EditModal = ({ onClose, onEdit , journal}) => {
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    [{ font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link"],
+  ],
+};
+
+export const EditModal = ({ onClose, onEdit, journal }) => {
   const titleEle = useRef();
-  const contentEle = useRef();
-  const handleSave = () =>{
+  const [content, setContent] = useState("");
+  const handleSave = () => {
     const title = titleEle.current.value;
-    const content = contentEle.current.value;
     const updatedJournal = {
-      title:title,
-      content:content
-    }
+      title: title,
+      content: content,
+    };
     onEdit(updatedJournal);
-  }
+  };
   return (
     <div
       className="modal show"
@@ -84,7 +96,9 @@ export const EditModal = ({ onClose, onEdit , journal}) => {
           </div>
           <div className="modal-body">
             <div className="mb-3">
-              <label htmlFor="journalTitle" className="form-label">Title</label>
+              <label htmlFor="journalTitle" className="form-label">
+                Title
+              </label>
               <input
                 ref={titleEle}
                 type="text"
@@ -93,15 +107,15 @@ export const EditModal = ({ onClose, onEdit , journal}) => {
                 defaultValue={journal.title}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="journalContent" className="form-label">Content</label>
-              <textarea
-                ref={contentEle}
-                className="form-control"
-                id="journalContent"
-                rows="5"
+            <div className="editor">
+              Content
+              <ReactQuill
                 defaultValue={journal.content}
-              ></textarea>
+                className="editorInput"
+                theme="snow"
+                onChange={(contentEle) => setContent(contentEle)}
+                modules={modules}
+              />
             </div>
           </div>
           <div className="modal-footer">
@@ -113,8 +127,11 @@ export const EditModal = ({ onClose, onEdit , journal}) => {
             >
               Close
             </button>
-            <button type="button" className="btn btn-outline-success"
-            onClick={handleSave}>
+            <button
+              type="button"
+              className="btn btn-outline-success"
+              onClick={handleSave}
+            >
               Save Changes
             </button>
           </div>

@@ -16,11 +16,11 @@ function Login() {
     function start() {
       gapi.client.init({
         clientId: process.env.REACT_APP_CLIENT_ID,
-        scope: 'email',
+        scope: "email",
       });
     }
 
-    gapi.load('client:auth2', start);
+    gapi.load("client:auth2", start);
   }, []);
 
   const handleSubmit = async (event) => {
@@ -45,12 +45,12 @@ function Login() {
 
   const handleGoogleLogin = async (response) => {
     try {
-      const res = await fetch('http://localhost:8080/public/auth/google', {
-        method: 'POST',
+      const res = await fetch("http://localhost:8080/public/auth/google", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token: response.credential })
+        body: JSON.stringify({ token: response.credential }),
       });
       const data = await res.json();
       console.log(data.jwt);
@@ -99,11 +99,14 @@ function Login() {
         <p className={styles.signupPrompt}>
           Don't have an account? <a href="/create-user">Create account</a>
         </p>
-        <GoogleLogin
-          clientId ={process.env.REACT_APP_CLIENT_ID}
-          onSuccess={(response) => handleGoogleLogin(response)}
-          onError={(error) => console.log(error)}
-        />
+        <p>OR</p>
+        <div className={styles.googleLogin}>
+          <GoogleLogin
+            clientId={process.env.REACT_APP_CLIENT_ID}
+            onSuccess={(response) => handleGoogleLogin(response)}
+            onError={(error) => console.log(error)}
+          />
+        </div>
       </div>
     </div>
   );
