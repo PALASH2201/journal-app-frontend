@@ -8,7 +8,7 @@ const GetJournals = () => {
   const {fetching} = useContext(JournalAppContext);
   return (
     <>
-      {journalEntryList && <h1 style={{textAlign:"center",margin:"5px 0px"}}>My Journals</h1>}
+      {journalEntryList && <h1 style={{margin:"5px 10px"}}>My Journals</h1>}
       {fetching && <LoadingSpinner/>}
       {journalEntryList &&
         journalEntryList.map((journal) => (

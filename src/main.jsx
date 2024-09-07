@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       { path: "/journals", element: <GetJournals /> },
       { path: "/create-journal", element: <CreateJournal /> },
       { path: "/create-user", element: <CreateUser /> },
-      // { path: "/account", element: <AccountSettings /> },
+      { path: "/account", element: <AccountSettings /> },
       { path: "/health-check", element: <HealthCheck /> },
     ],
   },

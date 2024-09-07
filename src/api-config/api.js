@@ -100,4 +100,13 @@ export const deleteUser = async() =>{
       Authorization: authHeader,
     },
   });
+};  
+
+export const updateProfile = async(User) =>{
+  const authHeader = getCredentials();
+  axiosInstance.put('/user/profile',User,{
+    headers:{
+      Authorization: authHeader
+    }
+  });
 };
