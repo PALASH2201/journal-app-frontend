@@ -31,7 +31,7 @@ const Header = () => {
             Journals
           </Link>
           <a
-            href="/login"
+            href="/"
             className={styles.logoutButton}
             onClick={handleLogout}
           >

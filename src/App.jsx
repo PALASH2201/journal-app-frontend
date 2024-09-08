@@ -9,7 +9,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 function App() {
   const location = useLocation();
   const hideComponents =
-    location.pathname === "/login" || location.pathname === "/create-user";
+    location.pathname === "/login" || location.pathname === "/create-user" || location.pathname === "/health-check" || location.pathname === "/";
   return (
     <div className="appContainer">
       {!hideComponents && <Header />}
