@@ -38,7 +38,7 @@ const CreateJournal = () => {
       console.error("Error creating Journal:", error);
     }
     titleEle.current.value = "";
-    quillEle.current.value = "";
+    setQuillEle("");
   };
   return (
     <>
