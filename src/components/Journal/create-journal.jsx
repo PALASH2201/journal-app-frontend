@@ -65,7 +65,7 @@ const CreateJournal = () => {
             onEditorStateChange={setEditorState}
             wrapperClassName="wrapperClassName"
             editorClassName={styles.editorInput}
-            toolbarClassName="toolbarClassName"
+            toolbarClassName={styles.toolBar}
           />
         </div>
         <div className={styles.cardFooter}>
