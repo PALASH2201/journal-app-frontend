@@ -18,13 +18,17 @@ const CreateUser = () => {
       password: password,
     };
     try {
-      await signup(User);
-      navigate('/login');
+      const response = await signup(User);
+      if(response.status === 201){
+        usernameEle.current.value = "";
+        passwordEle.current.value = "";
+        navigate('/login');
+      }else {
+        throw new Error();
+      }
     } catch (error) {
       console.error("Error creating user:", error);
     }
-    usernameEle.current.value = "";
-    passwordEle.current.value = "";
   };
 
   return (

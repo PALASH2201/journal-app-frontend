@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://journalapplication-production.up.railway.app/";
+//const API_BASE_URL = "http://localhost:8080";
 
 export function setCredentials(token) {
   localStorage.setItem("token",token);
@@ -8,7 +9,7 @@ export function setCredentials(token) {
 
 export function checkAuth(){
   const token = localStorage.getItem('token');
-  return !!token ;// Returns true if token exists, false otherwise
+  return !!token ;
 }
 
 const getCredentials = () => {
@@ -32,10 +33,14 @@ const axiosInstance = axios.create({
 
 //Public endpoints
 export const healthCheck = () => axiosInstance.get("/public/health-check");
-export const signup = (user) =>
-  axiosInstance.post("/public/signup", user);
-export const login = (user) =>
-  axiosInstance.post("/public/login", user);
+export const signup = (user) => {
+  const response = axiosInstance.post("/public/signup", user);
+  return response;
+}
+export const login = (user) =>{
+  const response = axiosInstance.post("/public/login", user);
+  return response;
+}
 
 //Journal endpoints
 export const fetchAllJournals = async () => {
@@ -58,55 +63,61 @@ export const fetchJournalById =  async(id) => {
 };
 export const createJournalEntry = async(journal) => {
   const authHeader = getCredentials();
-  axiosInstance.post("/journal", journal, {
+  const response = axiosInstance.post("/journal", journal, {
     headers: {
       Authorization: authHeader,
     },
   });
+  return response;
 };
 
 export const deleteJournalById = async(id) => {
   const authHeader = getCredentials();
-  axiosInstance.delete(`/journal/id/${id}`, {
+  const response = axiosInstance.delete(`/journal/id/${id}`, {
     headers: {
       Authorization: authHeader,
     },
   });
+  return response;
 };
 
 export const updateJournalById = async(id, journal) => {
   const authHeader = getCredentials();
-  axiosInstance.put(`/journal/id/${id}`, journal, {
+  const response = axiosInstance.put(`/journal/id/${id}`, journal, {
     headers: {
       Authorization: authHeader,
     },
   });
+  return response;
 };
 
 //User Endpoints
 export const updatePassword = async(User) =>{
   const authHeader = getCredentials();
-  axiosInstance.put(`/user`,User,{
+  const response = axiosInstance.put(`/user`,User,{
     headers:{
       Authorization: authHeader,
     },
   });
+  return response;
 }; 
 
 export const deleteUser = async() =>{
   const authHeader = getCredentials();
-  axiosInstance.delete(`/user`,{
+  const response = axiosInstance.delete(`/user`,{
     headers:{
       Authorization: authHeader,
     },
   });
+  return response;
 };  
 
 export const updateProfile = async(User) =>{
   const authHeader = getCredentials();
-  axiosInstance.put('/user/profile',User,{
+  const response = axiosInstance.put('/user/profile',User,{
     headers:{
       Authorization: authHeader
     }
   });
+  return response;
 };

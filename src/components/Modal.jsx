@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
-import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, ContentState,convertToRaw } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import draftToHtml from 'draftjs-to-html';
+import DOMPurify from "dompurify";
+import styles from "../components/Journal/create-journal.module.css";
 
 const DeleteModal = ({ onClose, onDelete }) => {
   return (
@@ -47,22 +51,22 @@ const DeleteModal = ({ onClose, onDelete }) => {
   );
 };
 
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    [{ font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link"],
-  ],
-};
 
 export const EditModal = ({ onClose, onEdit, journal }) => {
+
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  const plainTextContent = stripHtmlTags(journal.content);
+  const initialContent = ContentState.createFromText(plainTextContent);
+
   const titleEle = useRef();
-  const [content, setContent] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createWithContent(initialContent));
   const handleSave = () => {
     const title = titleEle.current.value;
+    const content = draftToHtml(convertToRaw(editorState.getCurrentContent())); 
     const updatedJournal = {
       title: title,
       content: content,
@@ -102,19 +106,19 @@ export const EditModal = ({ onClose, onEdit, journal }) => {
               <input
                 ref={titleEle}
                 type="text"
-                className="form-control"
+                className={styles.inputField}
                 id="journalTitle"
                 defaultValue={journal.title}
               />
             </div>
             <div className="editor">
               Content
-              <ReactQuill
-                defaultValue={journal.content}
-                className="editorInput"
-                theme="snow"
-                onChange={(contentEle) => setContent(contentEle)}
-                modules={modules}
+              <Editor
+                editorState={editorState}
+                onEditorStateChange={setEditorState}
+                wrapperClassName="wrapperClassName"
+                editorClassName={styles.editorInput}
+                toolbarClassName={styles.toolBar}
               />
             </div>
           </div>

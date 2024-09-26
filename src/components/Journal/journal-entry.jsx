@@ -26,8 +26,11 @@ const Journal = ({ journal }) => {
 
   const handleDelete = async () => {
     try {
-      await deleteJournalById(selectedJournalId);
-      refreshJournals();
+      const response = await deleteJournalById(selectedJournalId);
+     // console.log(response);
+      if(response.status === 204) {
+          window.location.reload(); 
+      }
     } catch (e) {
       alert("Could not delete. Try again!");
     } finally {
@@ -36,8 +39,11 @@ const Journal = ({ journal }) => {
   };
   const handleEdit = async (journal) => {
     try {
-      await updateJournalById(selectedJournalId, journal);
-      refreshJournals();
+      const response = await updateJournalById(selectedJournalId, journal);
+      //console.log(response);
+      if(response.status === 200 || response.status === 201) {
+        window.location.reload(); 
+      }
     } catch (e) {
       alert("Could not edit. Try again!");
     } finally {

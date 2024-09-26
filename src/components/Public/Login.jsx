@@ -53,7 +53,7 @@ function Login() {
         body: JSON.stringify({ token: response.credential }),
       });
       const data = await res.json();
-      console.log(data.jwt);
+      //console.log(data.jwt);
       setCredentials(data.jwt);
       handleLogin();
       navigate("/home");

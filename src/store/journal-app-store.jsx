@@ -25,9 +25,6 @@ const JournalAppProvider = ({ children }) => {
       getAllJournals(); 
   }, [isAuthenticated]);
 
-  const refreshJournals = async () => {
-    window.location.reload();
-  };
 
   const handleLogin = () => {
       setIsAuthenticated(true);
@@ -38,8 +35,8 @@ const JournalAppProvider = ({ children }) => {
       value={{
         journalEntryList: journalEntryList,
         fetching: fetching,
-        refreshJournals: refreshJournals,
-        handleLogin:handleLogin
+        handleLogin:handleLogin,
+        setJournalEntryList:setJournalEntryList
       }}
     >
       {children}
