@@ -45,7 +45,7 @@ function Login() {
 
   const handleGoogleLogin = async (response) => {
     try {
-      const res = await fetch("https://journalapplication-production.up.railway.app/public/auth/google", {
+      const res = await fetch("https://journalapplication-ssku.onrender.com/public/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
