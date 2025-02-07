@@ -7,10 +7,10 @@ const backendServers = [
   "https://journalapplication-ssku.onrender.com/",
   "https://journalapplication-2.onrender.com"
 ];
-const API_BASE_URL = "http://localhost:8080";
+// const API_BASE_URL = "http://localhost:8080";
 
 
-// const API_BASE_URL = backendServers[Math.floor(Math.random() * backendServers.length)];
+const API_BASE_URL = backendServers[Math.floor(Math.random() * backendServers.length)];
 
 export function setCredentials(token) {
   localStorage.setItem("token",token);
