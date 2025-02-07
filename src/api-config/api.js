@@ -98,7 +98,18 @@ export const updateJournalById = async(id, journal) => {
     },
   });
   return response;
-};
+}; 
+
+export const getJournalPdfById = async(id) =>{
+  const authHeader = getCredentials();
+  const response = axiosInstance.get(`/journal/generate-pdf/id/${id}`,{
+    headers: {
+      Authorization: authHeader,
+    },
+    responseType: 'blob'
+  });
+  return response;
+}
 
 //User Endpoints
 export const updatePassword = async(User) =>{

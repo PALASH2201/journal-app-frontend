@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import styles from "./journal-entry.module.css";
 import DOMPurify from "dompurify";
+import { FiDownload } from "react-icons/fi";
+import { getJournalPdfById } from "../../api-config/api";
 
 const Journal = ({ journal, onOpenEditModal, onOpenDeleteModal }) => { // ✅ Accept both props
   const [showFullContent, setShowFullContent] = useState(false);
@@ -10,6 +12,21 @@ const Journal = ({ journal, onOpenEditModal, onOpenDeleteModal }) => { // ✅ Ac
     let [newDate] = date.split("T");
     return newDate;
   }
+  const downloadJournalPdf = async (title,id) => {
+    try {
+      const response = await getJournalPdfById(id);
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${title}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+    }
+  };
+  
 
   const sanitizedContent = DOMPurify.sanitize(journal.content);
   const shortContent = sanitizedContent.substring(0, 200) + "...";
@@ -36,6 +53,11 @@ const Journal = ({ journal, onOpenEditModal, onOpenDeleteModal }) => { // ✅ Ac
         </div>
 
         <div className={styles.buttonContainer}>
+          <div
+            className={styles.editBtn}
+            onClick={()=> downloadJournalPdf(journal.title,journal.id)}>
+            <FiDownload />
+          </div>
           <div
             className={styles.editBtn}
             onClick={() => onOpenEditModal(journal)} // ✅ Trigger Edit Modal
