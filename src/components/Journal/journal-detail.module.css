@@ -1,0 +1,61 @@
+/* journal-detail.module.css */
+.container {
+  padding: 2rem;
+  position: relative;
+}
+
+.backButton {
+  margin-bottom: 1.5rem;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+}
+
+.date {
+  color: gray;
+  margin: 4px 0 0 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.editBtn,
+.deleteBtn,
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.editBtn {
+  background: #eaeaea;
+}
+
+.deleteBtn {
+  background: #f8d7da;
+}
+
+.downloadBtn {
+  background: #d1e7dd;
+}

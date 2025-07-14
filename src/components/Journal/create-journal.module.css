@@ -106,3 +106,17 @@
 .button:hover {
   background-color: hsl(0, 0%, 14%);
 }
+
+
+/* modal overrides */
+.modalDialogCustom {
+  max-width: 90vw;    
+  width: 800px;       
+}
+
+.modalContentCustom {
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 20px;
+}

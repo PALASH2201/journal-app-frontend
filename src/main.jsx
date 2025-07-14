@@ -15,6 +15,7 @@ import CreateJournal from "./components/Journal/create-journal.jsx";
 import AccountSettings from "./components/User/Account.jsx";
 import CreateUser from "./components/Public/create-user.jsx";
 import HealthCheck from "./components/Public/health-check";
+import JournalDetail from "./components/Journal/journal-detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/home", element: <Home /> },
       { path: "/journals", element: <GetJournals /> },
+      { path: "/journal/:id", element: <JournalDetail /> },
       { path: "/create-journal", element: <CreateJournal /> },
       { path: "/create-user", element: <CreateUser /> },
       { path: "/account", element: <AccountSettings /> },

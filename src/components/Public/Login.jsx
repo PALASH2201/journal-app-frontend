@@ -7,6 +7,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import { gapi } from "gapi-script";
 
 function Login() {
+  const API_URL = "https://journalapplication-ssku.onrender.com/public/auth/google";
+  // const API_URL = "http://localhost:8080/public/auth/google";
   const usernameEle = useRef();
   const passwordEle = useRef();
   const navigate = useNavigate();
@@ -45,13 +47,14 @@ function Login() {
 
   const handleGoogleLogin = async (response) => {
     try {
-      const res = await fetch("https://journalapplication-ssku.onrender.com/public/auth/google", {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ token: response.credential }),
       });
+      console.log(res);
       const data = await res.json();
       //console.log(data.jwt);
       setCredentials(data.jwt);
